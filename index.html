@@ -3,28 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <title>Karavali Vogue</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+
+    <!-- IMPORTANT for Mobile View -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ================= CSS ================= -->
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fffaf7;
+        }
+
+        header {
+            background: #7b2d26;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            padding: 60px;
+            text-align: center;
+            background: #f3e0dc;
+        }
+
+        section {
+            padding: 40px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 12px;
+        }
+
+        /* -------- Contact Form -------- */
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 12px;
+            background: #7b2d26;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        /* ================= MOBILE APP VIEW ================= */
+        @media (max-width: 768px) {
+
+            header h1 {
+                font-size: 22px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 40px 15px;
+            }
+
+            .hero h2 {
+                font-size: 20px;
+            }
+
+            section {
+                padding: 20px 15px;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            footer {
+                font-size: 12px;
+                margin-bottom: 60px;
+            }
+        }
+
+        /* -------- Bottom Navigation (App Style) -------- */
+        .bottom-nav {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .bottom-nav {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                background: #7b2d26;
+                justify-content: space-around;
+                padding: 12px 0;
+            }
+
+            .bottom-nav a {
+                color: white;
+                text-decoration: none;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
+<!-- ================= HEADER ================= -->
 <header>
     <h1>Karavali Vogue</h1>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
     </nav>
 </header>
 
-<section class="hero">
+<!-- ================= HOME ================= -->
+<section id="home" class="hero">
     <h2>Traditional & Modern Women’s Fashion</h2>
-    <p>Stitched with elegance, inspired by culture.</p>
+    <p>Stitched with elegance, inspired by coastal culture.</p>
 </section>
 
+<!-- ================= ABOUT ================= -->
+<section id="about">
+    <h2>About Us</h2>
+    <p>
+        Karavali Vogue is a women’s fashion brand focusing on stitched ethnic
+        and modern wear inspired by coastal tradition and elegance.
+    </p>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+    <h2>Contact Us</h2>
+    <form onsubmit="submitForm(event)">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Message"></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<!-- ================= FOOTER ================= -->
 <footer>
     <p>© 2025 Karavali Vogue</p>
 </footer>
+
+<!-- ================= BOTTOM NAV (MOBILE) ================= -->
+<div class="bottom-nav">
+    <a href="#home">🏠 Home</a>
+    <a href="#about">ℹ️ About</a>
+    <a href="#contact">📞 Contact</a>
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+    console.log("Karavali Vogue loaded successfully");
+
+    function submitForm(event) {
+        event.preventDefault();
+        alert("Thank you! Your message has been sent 💖");
+    }
+</script>
 
 </body>
 </html>

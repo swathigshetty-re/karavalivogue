@@ -3,8 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>About | Karavali Vogue</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fffaf7;
+        }
+
+        header {
+            background: #7b2d26;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 40px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 12px;
+        }
+
+        /* Mobile View */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            section {
+                padding: 20px 15px;
+            }
+
+            footer {
+                margin-bottom: 60px;
+                font-size: 12px;
+            }
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .bottom-nav {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                background: #7b2d26;
+                justify-content: space-around;
+                padding: 12px 0;
+            }
+
+            .bottom-nav a {
+                color: white;
+                text-decoration: none;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
 <header>
@@ -19,14 +92,26 @@
 <section>
     <h2>About Us</h2>
     <p>
-        Karavali Vogue is a women’s fashion brand focusing on
-        stitched ethnic and modern wear inspired by coastal culture.
+        Karavali Vogue is a women-focused fashion brand that blends
+        traditional coastal styles with modern trends.
+        We specialize in stitched ethnic and contemporary outfits
+        designed for elegance and comfort.
     </p>
 </section>
 
 <footer>
     <p>© 2025 Karavali Vogue</p>
 </footer>
+
+<div class="bottom-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">ℹ️ About</a>
+    <a href="contact.html">📞 Contact</a>
+</div>
+
+<script>
+    console.log("About page loaded");
+</script>
 
 </body>
 </html>

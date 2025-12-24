@@ -3,8 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact | Karavali Vogue</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fffaf7;
+        }
+
+        header {
+            background: #7b2d26;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 40px;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #7b2d26;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 12px;
+        }
+
+        /* Mobile View */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            section {
+                padding: 20px 15px;
+            }
+
+            footer {
+                margin-bottom: 60px;
+                font-size: 12px;
+            }
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .bottom-nav {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                background: #7b2d26;
+                justify-content: space-around;
+                padding: 12px 0;
+            }
+
+            .bottom-nav a {
+                color: white;
+                text-decoration: none;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
 <header>
@@ -18,17 +110,30 @@
 
 <section>
     <h2>Contact Us</h2>
-    <form>
+    <form onsubmit="submitForm(event)">
         <input type="text" placeholder="Your Name" required>
         <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Message"></textarea>
-        <button type="submit">Send</button>
+        <textarea placeholder="Your Message"></textarea>
+        <button type="submit">Send Message</button>
     </form>
 </section>
 
 <footer>
     <p>© 2025 Karavali Vogue</p>
 </footer>
+
+<div class="bottom-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">ℹ️ About</a>
+    <a href="contact.html">📞 Contact</a>
+</div>
+
+<script>
+    function submitForm(event) {
+        event.preventDefault();
+        alert("Thank you for contacting Karavali Vogue 💖");
+    }
+</script>
 
 </body>
 </html>
