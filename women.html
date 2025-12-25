@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Karavali Vogue</title>
+<title>Women Collection | Karavali Vogue</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -21,8 +21,6 @@ header {
     color: white;
     padding: 10px 20px;
 }
-
-/* LOGO BAR */
 .header-content {
     display: flex;
     align-items: center;
@@ -30,8 +28,6 @@ header {
 }
 .header-content img {
     width: 60px;
-    height: auto;
-    border-radius: 5px;
 }
 .header-content h1 {
     margin: 0;
@@ -53,18 +49,11 @@ nav a:hover {
     background: maroon;
 }
 
-/* HERO */
-.hero {
-    background: url("https://images.unsplash.com/photo-1520975916090-3105956dac38") no-repeat center/cover;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-.hero h1 {
-    background: rgba(0,0,0,0.6);
+/* PAGE TITLE */
+.page-title {
+    text-align: center;
     padding: 20px;
+    background: #fff;
 }
 
 /* PRODUCTS */
@@ -85,7 +74,7 @@ nav a:hover {
 }
 .product img {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
 }
 .product button {
@@ -115,8 +104,8 @@ footer {
 </style>
 
 <script>
-function addToCart(name) {
-    alert(name + " added to cart!");
+function addToCart(item) {
+    alert(item + " added to cart!");
 }
 </script>
 
@@ -125,13 +114,10 @@ function addToCart(name) {
 
 <header>
     <div class="header-content">
-        <!-- LOGO -->
-        <img src="D:\karavali_vogue\circle-cropped.png" alt="Karavali Vogue Logo">
-
-        <!-- SITE NAME -->
+        <img src= "D:\karavali_vogue\circle-cropped.png"alt="Karavali Vogue Logo">
         <div>
             <h1>Karavali Vogue</h1>
-            <p>Traditional & Modern Fashion</p>
+            <p>Women Collection</p>
         </div>
     </div>
 </header>
@@ -144,45 +130,47 @@ function addToCart(name) {
     <a href="contact.html">Contact</a>
 </nav>
 
-<section class="hero">
-    <h1>Elegant Styles for Every Occasion</h1>
-</section>
+<div class="page-title">
+    <h2>Women's Fashion Collection</h2>
+    <p>Elegant • Traditional • Modern</p>
+</div>
 
 <div class="container">
-    <h2>Featured Products</h2>
-
     <div class="products">
+
         <div class="product">
-            <img src="D:\karavali_vogue\download (4).jpeg">
-            <h3>Women Kurti</h3>
-            <p>₹1200</p>
-            <button onclick="addToCart('Women Kurti')">Add to Cart</button>
+            <img src="D:\karavali_vogue\Wine color chanderi fabric beautiful festive wear kurta set - Plus-size-kurtis.jpeg">
+            <h3>Designer Kurti</h3>
+            <p>₹1,499</p>
+            <button onclick="addToCart('Designer Kurti')">Add to Cart</button>
         </div>
 
         <div class="product">
-            <img src="D:\karavali_vogue\남성 옷깃 짧은 소매 라벨 질감 일상적인 캐주얼 느슨한 휴가 셔츠.jpeg">
-            <h3>Men Shirt</h3>
-            <p>₹999</p>
-            <button onclick="addToCart('Men Shirt')">Add to Cart</button>
+            <img src="D:\karavali_vogue\saree.jpeg">
+            <h3>Saree</h3>
+            <p>₹3,999</p>
+            <button onclick="addToCart('Saree')">Add to Cart</button>
         </div>
 
         <div class="product">
-            <img src="D:\karavali_vogue\download (6).jpeg">
-            <h3>Kids Wear</h3>
-            <p>₹799</p>
-            <button onclick="addToCart('Kids Wear')">Add to Cart</button>
+            <img src="D:\karavali_vogue\download (3).jpeg">
+            <h3>Salwar Suit</h3>
+            <p>₹2,299</p>
+            <button onclick="addToCart('Salwar Suit')">Add to Cart</button>
         </div>
+
         <div class="product">
             <img src="D:\karavali_vogue\download (1).jpeg">
             <h3>Lehenga</h3>
-            <p>₹1999</p>
+            <p>₹6,499</p>
             <button onclick="addToCart('Lehenga')">Add to Cart</button>
         </div>
+
     </div>
 </div>
 
 <footer>
-    <p>© 2025 Karavali Vogue | Designed by nie look</p>
+    <p>© 2025 Karavali Vogue | Women Collection</p>
 </footer>
 
 </body>

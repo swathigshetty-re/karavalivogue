@@ -2,61 +2,116 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Karavali Vogue | Contact</title>
+<title>Contact Us | Karavali Vogue</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{margin:0;font-family:Arial;background:#fffaf7;}
-header{background:#7b2d26;color:#fff;padding:15px;text-align:center;}
-nav a{color:#fff;margin:0 10px;text-decoration:none;font-weight:bold;}
-section{padding:30px;}
-form input,form textarea{width:100%;padding:10px;margin:10px 0;border-radius:6px;border:1px solid #ccc;}
-button{width:100%;padding:12px;background:#7b2d26;color:#fff;border:none;border-radius:8px;}
-footer{background:#333;color:#fff;text-align:center;padding:10px;}
-.bottom-nav{display:none;}
-@media(max-width:768px){
-nav{display:none;}
-footer{margin-bottom:60px;}
-.bottom-nav{display:flex;position:fixed;bottom:0;width:100%;background:#7b2d26;justify-content:space-around;padding:12px;}
-.bottom-nav a{color:#fff;text-decoration:none;}
+body{margin:0;font-family:Arial;background:#f4f4f4}
+header{background:maroon;color:#fff;padding:10px 20px}
+.header{display:flex;align-items:center;gap:15px}
+.header img{width:60px}
+nav{background:#222;display:flex;justify-content:center;flex-wrap:wrap}
+nav a{color:#fff;padding:12px 20px;text-decoration:none}
+nav a:hover{background:maroon}
+
+.contact-box{
+max-width:500px;
+background:#fff;
+margin:30px auto;
+padding:25px;
+box-shadow:0 0 10px #bbb;
+border-radius:6px;
 }
+
+.contact-box h2{text-align:center;margin-bottom:20px}
+
+.info{
+margin-bottom:15px;
+font-size:16px;
+}
+
+.info span{
+font-weight:bold;
+color:maroon;
+}
+
+.whatsapp{
+display:block;
+text-align:center;
+background:#25D366;
+color:#fff;
+padding:12px;
+text-decoration:none;
+border-radius:5px;
+margin-top:20px;
+}
+
+footer{background:#222;color:#fff;text-align:center;padding:10px;margin-top:30px}
 </style>
 </head>
 
 <body>
 
 <header>
+<div class="header">
+<img src="D:\karavali_vogue\circle-cropped.png" alt="Karavali Vogue Logo">
+<div>
 <h1>Karavali Vogue</h1>
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-</nav>
+<p>Contact Us</p>
+</div>
+</div>
 </header>
 
-<section>
-<h2>Contact Us</h2>
-<form onsubmit="sendMsg(event)">
-<input type="text" placeholder="Name" required>
-<input type="email" placeholder="Email" required>
-<textarea placeholder="Message"></textarea>
-<button>Send</button>
-</form>
-</section>
+<nav>
+<a href="index.html">Home</a>
+<a href="women.html">Women</a>
+<a href="men.html">Men</a>
+<a href="kids.html">Kids</a>
+<a href="contact.html">Contact</a>
+</nav>
 
-<footer>© 2025 Karavali Vogue</footer>
+<div class="contact-box">
+<h2>Get in Touch</h2>
 
-<div class="bottom-nav">
-<a href="index.html">🏠</a>
-<a href="about.html">ℹ️</a>
-<a href="contact.html">📞</a>
+<div class="info">
+<span>📍 Address:</span><br>
+Karavali Vogue Boutique,<br>
+Mangalore, Karnataka – 575001
 </div>
 
-<script>
-function sendMsg(e){
-e.preventDefault();
-alert("Message sent successfully 💖");
-}
-</script>
+<div class="info">
+<span>📞 Phone:</span><br>
++91 72598 09927
+</div>
+
+<div class="info">
+<span>📧 Email:</span><br>
+karavalivogue2025@gmail.com
+</div>
+
+<div class="info">
+<span>⏰ Working Hours:</span><br>
+Monday – Saturday<br>
+10:00 AM – 8:00 PM
+</div>
+
+<div class="instagram-box">
+<h3>Follow us on Instagram</h3>
+<p>@karavali_vogue</p>
+
+<a href="https://www.instagram.com/karavali_vogue/" target="_blank">
+📸 Visit Instagram
+</a>
+</div>
+<a class="whatsapp" href="https://wa.me/7259809927" target="_blank">
+💬 Chat with us on WhatsApp
+</a>
+
+</div>
+
+<footer>
+<p>© 2025 Karavali Vogue | All Rights Reserved</p>
+</footer>
+
 </body>
 </html>
