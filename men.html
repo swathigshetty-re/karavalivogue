@@ -6,31 +6,183 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+*{box-sizing:border-box}
 body{margin:0;font-family:Arial;background:#f4f4f4}
-header{background:maroon;color:#fff;padding:10px 20px}
-.header{display:flex;align-items:center;gap:15px}
-.header img{width:60px}
-nav{background:#222;display:flex;justify-content:center;flex-wrap:wrap}
-nav a{color:#fff;padding:12px 20px;text-decoration:none}
+
+/* HEADER */
+header{background:maroon;color:white;padding:10px 20px}
+.header-content{
+display:flex;
+align-items:center;
+justify-content:space-between
+}
+.logo-area{display:flex;align-items:center;gap:15px}
+.logo-area img{width:60px}
+
+/* CART */
+.cart-btn{
+background:white;
+color:maroon;
+padding:6px 12px;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold
+}
+
+/* NAVBAR */
+nav{
+background:#222;
+display:flex;
+justify-content:center;
+flex-wrap:wrap
+}
+nav a{
+color:white;
+padding:12px 20px;
+text-decoration:none
+}
 nav a:hover{background:maroon}
+
+/* PRODUCTS */
 .container{padding:20px}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
-.product{background:#fff;padding:15px;text-align:center;box-shadow:0 0 10px #ccc}
-.product img{width:100%;height:220px;object-fit:cover}
-button{background:maroon;color:#fff;border:none;padding:8px}
-footer{background:#222;color:#fff;text-align:center;padding:10px;margin-top:20px}
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px
+}
+.product{
+background:white;
+padding:15px;
+border-radius:5px;
+text-align:center;
+box-shadow:0 0 10px #ccc
+}
+.product img{
+width:100%;
+height:220px;
+object-fit:cover
+}
+.product button{
+background:maroon;
+color:white;
+border:none;
+padding:8px 15px;
+cursor:pointer
+}
+
+/* CART POPUP */
+.cart{
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.6)
+}
+.cart-box{
+background:white;
+width:320px;
+margin:80px auto;
+padding:20px;
+border-radius:6px
+}
+.cart-item{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px
+}
+.order-btn{
+background:green;
+color:white;
+border:none;
+padding:10px;
+width:100%;
+margin-top:10px
+}
+.close{float:right;cursor:pointer;font-weight:bold}
+
+/* FOOTER */
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:10px;
+margin-top:30px
+}
+
+/* MOBILE */
+@media(max-width:600px){
+.header-content{flex-direction:column;text-align:center}
+}
 </style>
 
 <script>
-function addToCart(item){alert(item+" added to cart")}
-</script>
-</head>
+let cart=[];
 
+function addToCart(name,price){
+ cart.push({name,price});
+ document.getElementById("count").innerText=cart.length;
+ alert(name+" added to cart");
+}
+
+function openCart(){
+ document.getElementById("cart").style.display="block";
+ showCart();
+}
+
+function closeCart(){
+ document.getElementById("cart").style.display="none";
+}
+
+function showCart(){
+ let html="",total=0;
+ cart.forEach((item,i)=>{
+ html+=`
+ <div class="cart-item">
+ ${item.name} - ₹${item.price}
+ <span style="color:red;cursor:pointer" onclick="removeItem(${i})">X</span>
+ </div>`;
+ total+=item.price;
+ });
+ document.getElementById("cartItems").innerHTML=html || "Cart is empty";
+ document.getElementById("total").innerText=total;
+}
+
+function removeItem(i){
+ cart.splice(i,1);
+ document.getElementById("count").innerText=cart.length;
+ showCart();
+}
+
+function placeOrder(){
+ if(cart.length===0){
+  alert("Cart is empty!");
+  return;
+ }
+ alert("🎉 Order placed successfully!");
+ cart=[];
+ document.getElementById("count").innerText=0;
+ closeCart();
+}
+</script>
+
+</head>
 <body>
+
 <header>
-<div class="header">
-<img src="D:\karavali_vogue\circle-cropped.png">
-<div><h1>Karavali Vogue</h1><p>Men Collection</p></div>
+<div class="header-content">
+
+<div class="logo-area">
+<img src="images/logo.png" alt="Logo">
+<div>
+<h1>Karavali Vogue</h1>
+<p>Men Collection</p>
+</div>
+</div>
+
+<div class="cart-btn" onclick="openCart()">
+🛒 Cart (<span id="count">0</span>)
+</div>
+
 </div>
 </header>
 
@@ -44,22 +196,38 @@ function addToCart(item){alert(item+" added to cart")}
 
 <div class="container">
 <div class="products">
+
 <div class="product">
-<img src="D:\karavali_vogue\formal (1).jpeg">
+<img src="images/8.jpeg">
 <h3>Formal Shirt</h3>
 <p>₹1,199</p>
-<button onclick="addToCart('Formal Shirt')">Add to Cart</button>
+<button onclick="addToCart('Formal Shirt',1199)">Add to Cart</button>
 </div>
 
 <div class="product">
-<img src="D:\karavali_vogue\formal (2).jpeg">
+<img src="images/11.jpeg">
 <h3>Casual T-Shirt</h3>
 <p>₹799</p>
-<button onclick="addToCart('Casual T-Shirt')">Add to Cart</button>
+<button onclick="addToCart('Casual T-Shirt',799)">Add to Cart</button>
 </div>
+
 </div>
 </div>
 
-<footer>© 2025 Karavali Vogue</footer>
+<!-- CART -->
+<div class="cart" id="cart">
+<div class="cart-box">
+<span class="close" onclick="closeCart()">X</span>
+<h3>Your Cart</h3>
+<div id="cartItems"></div>
+<p><b>Total: ₹<span id="total">0</span></b></p>
+<button class="order-btn" onclick="placeOrder()">Place Order</button>
+</div>
+</div>
+
+<footer>
+© 2025 Karavali Vogue | Men Collection
+</footer>
+
 </body>
 </html>

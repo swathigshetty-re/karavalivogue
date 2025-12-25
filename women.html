@@ -6,106 +6,169 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-* {
-    box-sizing: border-box;
-}
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f4f4f4}
 
 /* HEADER */
-header {
-    background: maroon;
-    color: white;
-    padding: 10px 20px;
+header{background:maroon;color:white;padding:10px 20px}
+.header-content{
+display:flex;
+align-items:center;
+justify-content:space-between
 }
-.header-content {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-.header-content img {
-    width: 60px;
-}
-.header-content h1 {
-    margin: 0;
+.logo-area{display:flex;align-items:center;gap:15px}
+.logo-area img{width:60px}
+
+/* CART */
+.cart-btn{
+background:white;
+color:maroon;
+padding:6px 12px;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold
 }
 
 /* NAVBAR */
-nav {
-    background: #222;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+nav{
+background:#222;
+display:flex;
+justify-content:center;
+flex-wrap:wrap
 }
-nav a {
-    color: white;
-    padding: 12px 20px;
-    text-decoration: none;
+nav a{
+color:white;
+padding:12px 20px;
+text-decoration:none
 }
-nav a:hover {
-    background: maroon;
-}
+nav a:hover{background:maroon}
 
 /* PAGE TITLE */
-.page-title {
-    text-align: center;
-    padding: 20px;
-    background: #fff;
+.page-title{
+text-align:center;
+padding:20px;
+background:white
 }
 
 /* PRODUCTS */
-.container {
-    padding: 20px;
+.container{padding:20px}
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px
 }
-.products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+.product{
+background:white;
+padding:15px;
+border-radius:5px;
+text-align:center;
+box-shadow:0 0 10px #ccc
 }
-.product {
-    background: white;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: 0 0 10px #ccc;
+.product img{
+width:100%;
+height:220px;
+object-fit:cover
 }
-.product img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-}
-.product button {
-    background: maroon;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
+.product button{
+background:maroon;
+color:white;
+border:none;
+padding:8px 15px;
+cursor:pointer
 }
 
+/* CART POPUP */
+.cart{
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.6)
+}
+.cart-box{
+background:white;
+width:320px;
+margin:80px auto;
+padding:20px;
+border-radius:6px
+}
+.cart-item{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px
+}
+.order-btn{
+background:green;
+color:white;
+border:none;
+padding:10px;
+width:100%;
+margin-top:10px
+}
+.close{float:right;cursor:pointer;font-weight:bold}
+
 /* FOOTER */
-footer {
-    background: #222;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: 30px;
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:10px;
+margin-top:30px
 }
 
 /* MOBILE */
-@media (max-width: 600px) {
-    .header-content {
-        flex-direction: column;
-        text-align: center;
-    }
+@media(max-width:600px){
+.header-content{flex-direction:column;text-align:center}
 }
 </style>
 
 <script>
-function addToCart(item) {
-    alert(item + " added to cart!");
+let cart=[];
+
+function addToCart(name,price){
+ cart.push({name,price});
+ document.getElementById("count").innerText=cart.length;
+ alert(name+" added to cart");
+}
+
+function openCart(){
+ document.getElementById("cart").style.display="block";
+ showCart();
+}
+
+function closeCart(){
+ document.getElementById("cart").style.display="none";
+}
+
+function showCart(){
+ let html="",total=0;
+ cart.forEach((item,i)=>{
+ html+=`
+ <div class="cart-item">
+ ${item.name} - ₹${item.price}
+ <span style="color:red;cursor:pointer" onclick="removeItem(${i})">X</span>
+ </div>`;
+ total+=item.price;
+ });
+ document.getElementById("cartItems").innerHTML=html || "Cart is empty";
+ document.getElementById("total").innerText=total;
+}
+
+function removeItem(i){
+ cart.splice(i,1);
+ document.getElementById("count").innerText=cart.length;
+ showCart();
+}
+
+function placeOrder(){
+ if(cart.length===0){
+  alert("Cart is empty!");
+  return;
+ }
+ alert("🎉 Order placed successfully!");
+ cart=[];
+ document.getElementById("count").innerText=0;
+ closeCart();
 }
 </script>
 
@@ -113,64 +176,83 @@ function addToCart(item) {
 <body>
 
 <header>
-    <div class="header-content">
-        <img src= "D:\karavali_vogue\circle-cropped.png"alt="Karavali Vogue Logo">
-        <div>
-            <h1>Karavali Vogue</h1>
-            <p>Women Collection</p>
-        </div>
-    </div>
+<div class="header-content">
+
+<div class="logo-area">
+<img src="images/logo.png" alt="Logo">
+<div>
+<h1>Karavali Vogue</h1>
+<p>Women Collection</p>
+</div>
+</div>
+
+<div class="cart-btn" onclick="openCart()">
+🛒 Cart (<span id="count">0</span>)
+</div>
+
+</div>
 </header>
 
 <nav>
-    <a href="index.html">Home</a>
-    <a href="women.html">Women</a>
-    <a href="men.html">Men</a>
-    <a href="kids.html">Kids</a>
-    <a href="contact.html">Contact</a>
+<a href="index.html">Home</a>
+<a href="women.html">Women</a>
+<a href="men.html">Men</a>
+<a href="kids.html">Kids</a>
+<a href="contact.html">Contact</a>
 </nav>
 
 <div class="page-title">
-    <h2>Women's Fashion Collection</h2>
-    <p>Elegant • Traditional • Modern</p>
+<h2>Women's Fashion Collection</h2>
+<p>Elegant • Traditional • Modern</p>
 </div>
 
 <div class="container">
-    <div class="products">
+<div class="products">
 
-        <div class="product">
-            <img src="D:\karavali_vogue\Wine color chanderi fabric beautiful festive wear kurta set - Plus-size-kurtis.jpeg">
-            <h3>Designer Kurti</h3>
-            <p>₹1,499</p>
-            <button onclick="addToCart('Designer Kurti')">Add to Cart</button>
-        </div>
+<div class="product">
+<img src="images/12.jpeg">
+<h3>Designer Kurti</h3>
+<p>₹1,499</p>
+<button onclick="addToCart('Designer Kurti',1499)">Add to Cart</button>
+</div>
 
-        <div class="product">
-            <img src="D:\karavali_vogue\saree.jpeg">
-            <h3>Saree</h3>
-            <p>₹3,999</p>
-            <button onclick="addToCart('Saree')">Add to Cart</button>
-        </div>
+<div class="product">
+<img src="images/9.jpeg">
+<h3>Saree</h3>
+<p>₹3,999</p>
+<button onclick="addToCart('Saree',3999)">Add to Cart</button>
+</div>
 
-        <div class="product">
-            <img src="D:\karavali_vogue\download (3).jpeg">
-            <h3>Salwar Suit</h3>
-            <p>₹2,299</p>
-            <button onclick="addToCart('Salwar Suit')">Add to Cart</button>
-        </div>
+<div class="product">
+<img src="images/4.jpeg">
+<h3>Salwar Suit</h3>
+<p>₹2,299</p>
+<button onclick="addToCart('Salwar Suit',2299)">Add to Cart</button>
+</div>
 
-        <div class="product">
-            <img src="D:\karavali_vogue\download (1).jpeg">
-            <h3>Lehenga</h3>
-            <p>₹6,499</p>
-            <button onclick="addToCart('Lehenga')">Add to Cart</button>
-        </div>
+<div class="product">
+<img src="images/2.jpeg">
+<h3>Lehenga</h3>
+<p>₹6,499</p>
+<button onclick="addToCart('Lehenga',6499)">Add to Cart</button>
+</div>
 
-    </div>
+</div>
+</div>
+
+<!-- CART -->
+<div class="cart" id="cart">
+<div class="cart-box">
+<span class="close" onclick="closeCart()">X</span>
+<h3>Your Cart</h3>
+<div id="cartItems"></div>
+<p><b>Total: ₹<span id="total">0</span></b></p>
+<button class="order-btn" onclick="placeOrder()">Place Order</button>
+</div>
 </div>
 
 <footer>
-    <p>© 2025 Karavali Vogue | Women Collection</p>
+<p>© 2025 Karavali Vogue | Women Collection</p>
 </footer>
 
 </body>
