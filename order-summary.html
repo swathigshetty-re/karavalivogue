@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Order Summary | Karavali Vogue</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    padding:20px;
+    font-family:Arial;
+    background:#f5f5f5;
+}
+
+header{
+    background:#7b2d26;
+    color:white;
+    padding:12px;
+    margin:-20px -20px 20px -20px;
+    text-align:center;
+}
+
+.summary-card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 6px #ccc;
+}
+
+.order-id{
+    color:#27ae60;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.item{
+    border-bottom:1px solid #ddd;
+    padding:10px 0;
+}
+
+.total{
+    font-size:18px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    background:#7b2d26;
+    color:white;
+    border:none;
+    border-radius:6px;
+}
+</style>
+
+<script>
+window.onload = function(){
+    let order = JSON.parse(localStorage.getItem("lastOrder"));
+    let container = document.getElementById("summary");
+    let total = 0;
+
+    if(!order){
+        container.innerHTML = "<p>No order found</p>";
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="order-id">Order ID: ${order.orderId}</div>
+        <p><b>Date:</b> ${order.date}</p>
+        <p><b>Time:</b> ${order.time}</p>
+        <p><b>Payment:</b> ${order.payment}</p>
+        <hr>
+    `;
+
+    order.items.forEach(item => {
+        let itemTotal = item.price * item.qty;
+        total += itemTotal;
+
+        container.innerHTML += `
+            <div class="item">
+                <b>${item.name}</b><br>
+                ₹${item.price} × ${item.qty} = ₹${itemTotal}
+            </div>
+        `;
+    });
+
+    container.innerHTML += `<hr><div class="total">Total: ₹${total}</div>`;
+}
+
+function printOrder(){
+    window.print();
+}
+</script>
+
+
+</head>
+<body>
+
+<header>
+<h2>Order Summary</h2>
+</header>
+
+<div class="summary-card" id="summary"></div>
+
+<button onclick="window.location.href='index.html'">Back to Home</button>
+<button onclick="printOrder()">🖨️ Print Order</button>
+<button onclick="window.location.href='order-history.html'">
+View Order History
+</button>
+
+</body>
+</html>

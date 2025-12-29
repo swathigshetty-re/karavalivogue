@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cart | Karavali Vogue</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#fffaf7;
+}
+
+/* Header */
+header{
+    background:#7b2d26;
+    color:white;
+    padding:12px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo img{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+}
+
+/* Cart Content */
+section{
+    padding:20px;
+}
+
+.cart-item{
+    background:white;
+    padding:15px;
+    border-radius:8px;
+    box-shadow:0 0 5px #ccc;
+    margin-bottom:15px;
+}
+
+.cart-item img{
+    width:80px;
+    height:80px;
+    object-fit:cover;
+    border-radius:8px;
+    float:left;
+    margin-right:15px;
+}
+
+.total{
+    font-size:18px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+button{
+    padding:6px 10px;
+    background:#7b2d26;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.remove{
+    background:#d9534f;
+    margin-top:5px;
+}
+
+/* Bottom Nav */
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:#7b2d26;
+    display:flex;
+    justify-content:space-around;
+    padding:12px 0;
+}
+
+.bottom-nav a{
+    color:white;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <img src="images/logo.png" alt="Logo">
+        <h3>Karavali Vogue</h3>
+    </div>
+</header>
+
+<section>
+    <h2>Your Cart</h2>
+
+    <div id="cart-items"></div>
+    <div class="total" id="total"></div>
+
+    <button id="orderBtn" onclick="goToOrder()">Proceed to Order</button>
+</section>
+
+<div class="bottom-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="cart.html">🛒 Cart</a>
+</div>
+
+<script>
+function renderCart(){
+    let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let cartContainer = document.getElementById("cart-items");
+    let totalDiv = document.getElementById("total");
+    let orderBtn = document.getElementById("orderBtn");
+
+    cartContainer.innerHTML = "";
+
+    if(cart.length === 0){
+        cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+        totalDiv.innerHTML = "";
+        orderBtn.style.display = "none";
+        return;
+    }
+
+    let total = 0;
+    orderBtn.style.display = "block";
+
+    cart.forEach((item, index) => {
+        let itemTotal = item.price * item.qty;
+        total += itemTotal;
+
+        cartContainer.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.image}">
+                <h4>${item.name}</h4>
+                <p>₹${item.price}</p>
+                <p>
+                    Qty:
+                    <button onclick="changeQty(${index}, -1)">−</button>
+                    ${item.qty}
+                    <button onclick="changeQty(${index}, 1)">+</button>
+                </p>
+                <p><b>₹${itemTotal}</b></p>
+                <button class="remove" onclick="removeItem(${index})">
+                    Remove
+                </button>
+                <div style="clear:both;"></div>
+            </div>
+        `;
+    });
+
+    totalDiv.innerHTML = "Total: ₹" + total;
+}
+
+function changeQty(index, change){
+    let cart = JSON.parse(localStorage.getItem("cartItems"));
+    cart[index].qty += change;
+
+    if(cart[index].qty <= 0){
+        cart.splice(index, 1);
+    }
+
+    localStorage.setItem("cartItems", JSON.stringify(cart));
+    renderCart();
+}
+
+function removeItem(index){
+    let cart = JSON.parse(localStorage.getItem("cartItems"));
+    cart.splice(index, 1);
+    localStorage.setItem("cartItems", JSON.stringify(cart));
+    renderCart();
+}
+
+function goToOrder(){
+    window.location.href = "order.html";
+}
+
+window.onload = renderCart;
+</script>
+
+</body>
+</html>

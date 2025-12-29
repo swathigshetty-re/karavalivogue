@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Order History | Karavali Vogue</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    padding:20px;
+    font-family:Arial;
+    background:#f5f5f5;
+}
+
+header{
+    background:#7b2d26;
+    color:white;
+    padding:12px;
+    margin:-20px -20px 20px -20px;
+    text-align:center;
+}
+
+.order-card{
+    background:white;
+    padding:15px;
+    border-radius:8px;
+    box-shadow:0 0 6px #ccc;
+    margin-bottom:15px;
+}
+
+.order-card h4{
+    margin:0;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#7b2d26;
+    color:white;
+    border:none;
+    border-radius:6px;
+    margin-top:10px;
+}
+</style>
+
+<script>
+window.onload = function(){
+    let history = JSON.parse(localStorage.getItem("orderHistory")) || [];
+    let container = document.getElementById("history");
+
+    if(history.length === 0){
+        container.innerHTML = "<p>No past orders</p>";
+        return;
+    }
+
+    history.reverse().forEach(order => {
+        container.innerHTML += `
+        <div class="order-card">
+            <h4>Order ID: ${order.orderId}</h4>
+            <p>Date: ${order.date} | ${order.time}</p>
+            <p>Payment: ${order.payment}</p>
+            <p>Items: ${order.items.length}</p>
+        </div>
+        `;
+    });
+}
+</script>
+
+</head>
+<body>
+
+<header>
+<h2>Order History</h2>
+</header>
+
+<div id="history"></div>
+
+<button onclick="window.location.href='index.html'">
+Back to Home
+</button>
+
+</body>
+</html>
